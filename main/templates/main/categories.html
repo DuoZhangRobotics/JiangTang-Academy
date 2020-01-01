@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JA Categories</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/main/css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="../../static/main/css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="../../static/main/css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="../../static/main/css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="../../static/main/css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../static/main/css/style.css">
+</head>
+<body class="about-page">
+<div class="page-header">
+    <header class="site-header">
+
+
+        {% include 'main/includes/navbaritems.html' %}
+
+    </header><!-- .site-header -->
+    <div class="page-header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h1>Categories</h1>
+                    </header><!-- .entry-header -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header-overlay -->
+</div><!-- .page-header -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumbs">
+                <ul class="flex flex-wrap align-items-center p-0 m-0">
+                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                    <li>Categories</li>
+                </ul>
+            </div><!-- .breadcrumbs -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="featured-courses courses-wrap">
+                    <div class="row mx-m-25">
+                        {% for cat in categories %}
+                            <div class="col-12 col-md-6 px-25">
+                                <div class="course-content">
+
+                                    <div class="course-content-wrap">
+                                        <header class="entry-header">
+                                            <h2 class="entry-title"><a
+                                                    href="{% url 'main:series' cat.pk %}">{{cat.category}}</a>
+                                            </h2>
+
+
+                                        </header><!-- .entry-header -->
+
+                                        <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
+                                            <div>
+                                                {{ cat.category_summary }}
+                                            </div><!-- .course-cost -->
+
+                                            <div class="course-ratings flex justify-content-end align-items-center">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-o"></span>
+
+                                                <span class="course-ratings-count">(4 votes)</span>
+                                            </div><!-- .course-ratings -->
+                                        </footer><!-- .entry-footer -->
+                                    </div><!-- .course-content-wrap -->
+                                </div><!-- .course-content -->
+                            </div><!-- .col -->
+                        {% endfor %}
+
+
+                    </div><!-- .row -->
+                </div><!-- .featured-courses -->
+            </div>
+        </div>
+
+
+        {% include 'main/includes/footer.html' %}
+
+    </div>
+</body>
+{% include "main/includes/js.html" %}
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JA About</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/main/css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="../../static/main/css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="../../static/main/css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="../../static/main/css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="../../static/main/css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../static/main/css/style.css">
+</head>
+<body class="about-page">
+<div class="page-header">
+    <header class="site-header">
+
+
+        {% include 'main/includes/navbaritems.html' %}
+
+    </header><!-- .site-header -->
+    <div class="page-header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h1>Profile</h1>
+                    </header><!-- .entry-header -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header-overlay -->
+</div><!-- .page-header -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumbs">
+                <ul class="flex flex-wrap align-items-center p-0 m-0">
+                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                    <li>Profile</li>
+                </ul>
+            </div><!-- .breadcrumbs -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+    <div class="container">
+        <div class="col-md-8">
+            <h2>User Profile</h2>
+            <p><strong>User Name:</strong> {{ user.username }}</p>
+            <p><strong>ID:</strong> {{ user.id }}</p>
+            <p><strong>Website</strong>: <a href="{{ profile.website }}">{{ profile.website }}</a></p>
+            <p><strong>Description</strong>: {{ profile.description }}</p>
+            <p><strong>City: </strong>{{ profile.city }}</p>
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong> Email: </strong><a class="email" href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+            <p><strong> Phone: </strong>{{ profile.phone }}</p>
+
+
+            <img src="{{ avatar.url }}" class="rounded-circle" width="260px" height="260px" alt="M Nazrul Islam">
+        </div>
+    </div>
+
+
+{% include 'main/includes/footer.html' %}
+
+</div>
+</body>
+{% include "main/includes/js.html" %}
+
+</html>

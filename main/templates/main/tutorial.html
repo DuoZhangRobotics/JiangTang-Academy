@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JA About</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/main/css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="../../static/main/css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="../../static/main/css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="../../static/main/css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="../../static/main/css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../static/main/css/style.css">
+</head>
+<body class="about-page">
+<div class="page-header">
+    <header class="site-header">
+
+
+        {% include 'main/includes/navbaritems.html' %}
+
+    </header><!-- .site-header -->
+    <div class="page-header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h1>Tutorials</h1>
+                    </header><!-- .entry-header -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header-overlay -->
+</div><!-- .page-header -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumbs">
+                <ul class="flex flex-wrap align-items-center p-0 m-0">
+                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                    <li>Tutorials</li>
+                </ul>
+            </div><!-- .breadcrumbs -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+
+    <div class="row">
+        <div class="col-12 col-lg-9">
+            <h3>{{ tutorial.tutorial_title }}</h3>
+            <p style="font-size:70%">Published {{ tutorial.tutorial_published }}</p>
+            {{ tutorial.tutorial_content|safe }}
+
+            {% if user.pk == tutorial.tutorial_uploader_id %}
+                <p></p>
+                <a href="{% url 'main:update' tutorial.pk %}">
+                    <button>Update your tutorial</button>
+                </a>
+
+                <a href="{% url 'main:delete' tutorial.pk %}">
+                    <button>Delete</button>
+                </a>
+            {% endif %}
+        </div>
+        <div class="col-12 col-lg-3">
+            <ul class="list-group">
+                <h4>Other Tutorials</h4>
+
+                {% for tutorial in sidebar %}
+                    {% if forloop.counter0 == this_tut_idx %}
+                        <li class="active list-group-item">
+                            <div>{{ tutorial.tutorial_title }}<br>(currently viewing)</div>
+                        </li>
+                    {% else %}
+                        <li class="list-group-item nav-item dropdown current-menu-item">
+                            <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ tutorial.tutorial_title }}
+                            </a>
+                            <div class="dropdown-menu bg-white" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item"
+                                   href="{% url "main:single_slug" tutorial.tutorial_slug %}">Go</a>
+
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+
+            </ul>
+        </div>
+
+
+    </div>
+
+    {% include 'main/includes/footer.html' %}
+
+</div>
+</body>
+{% include "main/includes/js.html" %}
+
+</html>

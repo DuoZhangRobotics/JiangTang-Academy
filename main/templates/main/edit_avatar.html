@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JA Avatar</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/main/css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="../../static/main/css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="../../static/main/css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="../../static/main/css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="../../static/main/css/swiper.min.css">
+
+    <!-- Cropper -->
+    <link href="../../static/main/css/cropper.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../static/main/css/style.css">
+
+
+</head>
+
+
+<body class="about-page">
+<div class="page-header">
+    <header class="site-header">
+
+
+        {% include 'main/includes/navbaritems.html' %}
+
+    </header><!-- .site-header -->
+    <div class="page-header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h1>Edit your Avatar</h1>
+                    </header><!-- .entry-header -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header-overlay -->
+</div><!-- .page-header -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumbs">
+                <ul class="flex flex-wrap align-items-center p-0 m-0">
+                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                    <li>Edit Avatar</li>
+                </ul>
+            </div><!-- .breadcrumbs -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+
+    {#    <div class="container">#}
+    {#        <form method="POST" enctype="multipart/form-data">#}
+    {#            <H1>Change your avatar</H1>#}
+    {#            {% csrf_token %}#}
+    {#            {{ form.as_p }}#}
+    {#            <button type="submit" class="btn waves-effect waves-light right-align"#}
+    {#                    style="background-color:yellow; color:black">#}
+    {#                Submit and Save#}
+    {#            </button>#}
+    {#        </form>#}
+    {#    </div>#}
+
+    <form method="post" enctype="multipart/form-data" id="formUpload">
+        {% csrf_token %}
+        {{ form }}
+    </form>
+    <h1></h1>
+    <!-- MODAL TO CROP THE IMAGE -->
+    <!-- Button trigger modal -->
+    <div class="modal fade" id="modalCrop" style="z-index: 1041;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Crop the photo</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="" id="image" style="max-width: 100%;">
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group pull-left" role="group">
+                        <button type="button" class="btn btn-default js-zoom-in">
+                            <span class="glyphicon glyphicon-zoom-in"></span>
+                        </button>
+                        <button type="button" class="btn btn-default js-zoom-out">
+                            <span class="glyphicon glyphicon-zoom-out"></span>
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+                    <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {#<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">#}
+    {#  Launch demo modal#}
+    {#</button>#}
+    {##}
+    {#<!-- Modal -->#}
+    {#<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+    {#  <div class="modal-dialog" role="document">#}
+    {#    <div class="modal-content">#}
+    {#      <div class="modal-header">#}
+    {#        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>#}
+    {#        <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+    {#          <span aria-hidden="true">&times;</span>#}
+    {#        </button>#}
+    {#      </div>#}
+    {#      <div class="modal-body">#}
+    {#        ...#}
+    {#      </div>#}
+    {#      <div class="modal-footer">#}
+    {#        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+    {#        <button type="button" class="btn btn-primary">Save changes</button>#}
+    {#      </div>#}
+    {#    </div>#}
+    {#  </div>#}
+    {#</div>#}
+
+    {% include 'main/includes/footer.html' %}
+
+</div>
+
+</body>
+
+
+<script type='text/javascript' src='../../static/main/js/jquery.js'></script>
+<script type='text/javascript' src="../../static/main/js/cropper.js"></script><!-- jQuery is required -->
+<script type='text/javascript' src="../../static/main/js/jquery-cropper.js"></script><!-- jQuery is required -->
+
+<script type='text/javascript' src='../../static/main/js/jquery.collapsible.min.js'></script>
+
+
+<script type='text/javascript' src='../../static/main/js/bootstrap.bundle.js'></script>
+<script type='text/javascript' src='../../static/main/js/swiper.min.js'></script>
+<script type='text/javascript' src='../../static/main/js/masonry.pkgd.min.js'></script>
+<script type='text/javascript' src='../../static/main/js/custom.js'></script>
+
+<script>
+
+    (function ($) {
+
+        /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+        $("#id_file").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#image").attr("src", e.target.result);
+                    $("#modalCrop").modal("show");
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        /* SCRIPTS TO HANDLE THE CROPPER BOX */
+        var $image = $("#image");
+        var cropBoxData;
+        var canvasData;
+        $("#modalCrop").on("shown.bs.modal", function () {
+            $image.cropper({
+                viewMode: 1,
+                aspectRatio: 1,
+                minCropBoxWidth: 200,
+                minCropBoxHeight: 200,
+                ready: function () {
+                    $image.cropper("setCanvasData", canvasData);
+                    $image.cropper("setCropBoxData", cropBoxData);
+                }
+            });
+        }).on("hidden.bs.modal", function () {
+            cropBoxData = $image.cropper("getCropBoxData");
+            canvasData = $image.cropper("getCanvasData");
+            $image.cropper("destroy");
+        });
+
+        $(".js-zoom-in").click(function () {
+            $image.cropper("zoom", 0.1);
+        });
+
+        $(".js-zoom-out").click(function () {
+            $image.cropper("zoom", -0.1);
+        });
+
+        /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+        $(".js-crop-and-upload").click(function () {
+            var cropData = $image.cropper("getData");
+            $("#id_x").val(cropData["x"]);
+            $("#id_y").val(cropData["y"]);
+            $("#id_height").val(cropData["height"]);
+            $("#id_width").val(cropData["width"]);
+            $("#formUpload").submit();
+        });
+
+    })(jQuery);
+</script>
+</html>

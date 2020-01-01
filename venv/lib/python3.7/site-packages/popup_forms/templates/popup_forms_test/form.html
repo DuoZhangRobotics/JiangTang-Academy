@@ -1,0 +1,9 @@
+{% extends 'popup_forms/base.html' %}
+
+{# POPUP LINK #}
+{% block popup_link_label %}Open Popup Form{% endblock %}
+
+{# POPUP FORM #}
+{% block form_fields %}
+      {{ form.as_p }}
+{% endblock %}

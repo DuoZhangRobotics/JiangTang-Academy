@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hello World</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/main/css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="../../static/main/css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="../../static/main/css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="../../static/main/css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="../../static/main/css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../static/main/css/style.css">
+</head>
+<body class="courses-page">
+<div class="page-header">
+    <header class="site-header">
+        {% include 'main/includes/navbaritems.html' %}
+    </header><!-- .site-header -->
+
+    <div class="page-header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h1>Courses Online</h1>
+                    </header><!-- .entry-header -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header-overlay -->
+</div><!-- .page-header -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumbs">
+                <ul class="flex flex-wrap align-items-center p-0 m-0">
+                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                    <li>Courses</li>
+                </ul>
+            </div><!-- .breadcrumbs -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <div class="featured-courses courses-wrap">
+                <div class="row mx-m-25">
+                    {% for tutorial in tutorials %}
+                        <div class="col-12 col-md-6 px-25">
+                            <div class="course-content">
+                                <figure class="course-thumbnail">
+                                    <a href="{% url "main:single_slug" tutorial.tutorial_slug %}"><img
+                                            src="{{ tutorial.file.url }}" alt=""></a>
+                                </figure><!-- .course-thumbnail -->
+
+                                <div class="course-content-wrap">
+                                    <header class="entry-header">
+                                        <h2 class="entry-title"><a
+                                                href="{% url "main:single_slug" tutorial.tutorial_slug %}">{{ tutorial.tutorial_title }}</a>
+                                        </h2>
+
+                                        <div class="entry-meta flex flex-wrap align-items-center">
+                                            <div class="course-author"><a
+                                                    href="{% url 'main:profile_pk' tutorial.tutorial_uploader_id %}">{{ tutorial.tutorial_uploader }}</a>
+                                            </div>
+                                            <div class="course-date">{{ tutorial.tutorial_published }}</div>
+                                        </div><!-- .course-date -->
+                                    </header><!-- .entry-header -->
+
+                                    <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
+                                        <div>
+                                            {{ tutorial.tutorial_categories }}/{{ tutorial.tutorial_series }}
+                                        </div><!-- .course-cost -->
+
+                                        <div class="course-ratings flex justify-content-end align-items-center">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+
+                                            <span class="course-ratings-count">(4 votes)</span>
+                                        </div><!-- .course-ratings -->
+                                    </footer><!-- .entry-footer -->
+                                </div><!-- .course-content-wrap -->
+                            </div><!-- .course-content -->
+                        </div><!-- .col -->
+                    {% endfor %}
+
+
+                </div><!-- .row -->
+            </div><!-- .featured-courses -->
+
+            <div class="pagination flex flex-wrap justify-content-between align-items-center">
+                <div class="col-12 col-lg-4 order-2 order-lg-1 mt-3 mt-lg-0">
+                    <ul class="flex flex-wrap align-items-center order-2 order-lg-1 p-0 m-0">
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
+
+{#                <div class="col-12 flex justify-content-start justify-content-lg-end col-lg-8 order-1 order-lg-2">#}
+{#                    <div class="pagination-results flex flex-wrap align-items-center">#}
+{#                        <p class="m-0">Showing 1–3 of 12 results</p>#}
+{##}
+{#                        <form>#}
+{#                            <select>#}
+{#                                <option>Show: 06</option>#}
+{#                                <option>Show: 12</option>#}
+{#                                <option>Show: 18</option>#}
+{#                                <option>Show: 24</option>#}
+{#                            </select>#}
+{#                        </form>#}
+{#                    </div><!-- .pagination-results -->#}
+{#                </div>#}
+            </div><!-- .pagination -->
+        </div><!-- .col -->
+
+        <div class="col-12 col-lg-4">
+            <div class="sidebar">
+                <div class="search-widget">
+                    <form class="flex flex-wrap align-items-center">
+                        <input type="search" placeholder="Search...">
+                        <button type="submit" class="flex justify-content-center align-items-center"><i
+                                class="fa fa-search"></i></button>
+                    </form><!-- .flex -->
+                </div><!-- .search-widget -->
+
+                <div class="cat-links">
+
+                <a href="category"><h2>Categories</h2></a>
+
+                    <ul class="p-0 m-0">
+                        {% for category in categories %}
+                            <li><a href="{% url 'main:series' category.pk %}">{{ category.category }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div><!-- .cat-links -->
+
+                <div class="latest-courses">
+                    <h2>Latest Series</h2>
+
+                    <ul class="p-0 m-0">
+                        <li class="flex flex-wrap justify-content-between align-items-center">
+                            <img src="../../static/main/images/t-1.jpg" alt="">
+
+                            <div class="content-wrap">
+                                <h3><a href="#">The Complete Financial Analyst Training</a></h3>
+
+
+                            </div><!-- .content-wrap -->
+                        </li>
+
+                        <li class="flex flex-wrap justify-content-between align-items-center">
+                            <img src="../../static/main/images/t-2.jpg" alt="">
+
+                            <div class="content-wrap">
+                                <h3><a href="#">Complete Java
+                                    Masterclass</a></h3>
+
+                            </div><!-- .content-wrap -->
+                        </li>
+
+                        <li class="flex flex-wrap justify-content-between align-items-center">
+                            <img src="../../static/main/images/t-3.jpg" alt="">
+
+                            <div class="content-wrap">
+                                <h3><a href="#">The Complete Digital Marketing Course</a></h3>
+
+                            </div><!-- .content-wrap -->
+                        </li>
+
+                        <li class="flex flex-wrap justify-content-between align-items-center">
+                            <img src="../../static/main/images/t-4.jpg" alt="">
+
+                            <div class="content-wrap">
+                                <h3><a href="#">Photoshop CC 2018
+                                    MasterClass</a></h3>
+
+                            </div><!-- .content-wrap -->
+                        </li>
+                    </ul>
+                </div><!-- .latest-courses -->
+
+                <div class="ads">
+                    <img src="../../static/main/images/ads.jpg" alt="">
+                </div><!-- .ads -->
+
+                <div class="popular-tags">
+                    <h2>Popular Tags</h2>
+
+                    <ul class="flex flex-wrap align-items-center p-0 m-0">
+                        <li><a href="#">Creative</a></li>
+                        <li><a href="#">Unique</a></li>
+                        <li><a href="#">Photography</a></li>
+                        <li><a href="#">ideas</a></li>
+                        <li><a href="#">Wordpress Template</a></li>
+                        <li><a href="#">startup</a></li>
+                    </ul>
+                </div><!-- .popular-tags -->
+            </div><!-- .sidebar -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+</div><!-- .container -->
+
+<div class="clients-logo">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-1.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-2.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-3.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-4.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-5.png" alt="">
+                </div><!-- .logo-wrap -->
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</div><!-- .clients-logo -->
+
+{% include "main/includes/footer.html" %}
+
+
+</body>
+{% include "main/includes/js.html" %}
+
+</html>

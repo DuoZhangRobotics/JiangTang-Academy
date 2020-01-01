@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <title>Jike Education</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/main/css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="../../static/main/css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="../../static/main/css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="../../static/main/css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="../../static/main/css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../static/main/css/style.css">
+
+
+</head>
+
+
+<body class="login-page" style="background: #3b4655">
+<div class="row justify-content-center">
+    <div class="col-3">
+
+        <div class="card-body"></div>
+        <h3 class="text-white">Register</h3>
+        <form method="POST">
+            {% csrf_token %}
+
+                                <p class="text-white">Username: </p>{{ form.username }}<p></p>
+                                <p class="text-white">Email: </p>{{ form.email }}<p></p>
+                                <p class="text-white">First Name: </p>{{ form.first_name }}<p></p>
+                                <p class="text-white">Last Name: </p>{{ form.last_name }}<p></p>
+                                <p class="text-white">Password: </p>{{ form.password1 }}<p></p>
+                                <p class="text-white">Repeat your password: </p>{{ form.password2 }}<p></p>
+            <p class="text-white"><strong>Note:</strong></p>
+            <ul>
+                <li class="text-white">Your password can't be too similar to your other personal information.</li>
+                <li class="text-white">Your password must contain at least 8 characters.</li>
+                <li class="text-white">Your password can't be a commonly used password.</li>
+                <li class="text-white">Your password can't be entirely numeric.</li>
+            </ul>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+
+        <p></p>
+
+        <p class="text-white">Already got an account? <a href="/login" target="blank" class="text-primary"><strong>Login
+            here</strong></a>!
+        <p></p>
+    </div>
+</div>
+</body>

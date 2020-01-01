@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <title>Jike Education</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/main/css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="../../static/main/css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="../../static/main/css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="../../static/main/css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="../../static/main/css/swiper.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../static/main/css/style.css">
+
+
+</head>
+
+
+<body class="login-page" style="background: #3b4655">
+<div class="row justify-content-center">
+    <div class="col-3">
+
+        <div class="card-body"></div>
+        <h3 class="text-white">Edit your account</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <p class="text-white">Username: </p>
+            {{ form.username }}
+            <p></p>
+            <p class="text-white">Email: </p>
+            {{ form.email }}
+            <p></p>
+            <p class="text-white">First Name: </p>
+            {{ form.first_name }}
+            <p></p>
+            <p class="text-white">Last Name:</p>
+            {{ form.last_name }}
+            <p></p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <p></p>
+
+    </div>
+</div>
+</body>

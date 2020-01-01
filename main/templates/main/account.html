@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JA Account</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../static/main/css/bootstrap.min.css">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="../../static/main/css/font-awesome.min.css">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="../../static/main/css/elegant-fonts.css">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="../../static/main/css/themify-icons.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="../../static/main/css/swiper.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="../../static/main/css/style.css">
+</head>
+<body class="about-page">
+<div class="page-header">
+    <header class="site-header">
+
+
+        {% include 'main/includes/navbaritems.html' %}
+
+    </header><!-- .site-header -->
+    <div class="page-header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h1>Account</h1>
+
+                    </header><!-- .entry-header -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- .page-header-overlay -->
+</div><!-- .page-header -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumbs">
+                <ul class="flex flex-wrap align-items-center p-0 m-0">
+                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                    <li>Account</li>
+                </ul>
+            </div><!-- .breadcrumbs -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+    <div class="row">
+        <div class="col-12">
+            <div class="nav-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-9 col-lg-3">
+                            <div class="site-branding">
+                                <a href="{% url 'main:edit_avatar' user.username %}">
+                                    <img src="{{ avatar.file.url }}" class="rounded-circle" width="100px" height="100px"
+                                         alt="M Nazrul Islam" data-toggle="tooltip" data-placement="top"
+                                         title="Click to change your avatar!">
+                                </a>
+                            </div><!-- .site-branding -->
+                        </div><!-- .col -->
+
+                        <div class="col-3 col-lg-9 flex justify-content-end align-content-center">
+                            <nav class="site-navigation flex justify-content-end align-items-center">
+                                <ul class="flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+
+                                    <li class="current-menu-item"><a
+                                            href="{% url 'main:profile_pk' user.pk %}">Profile</a>
+                                    </li>
+
+
+                                    <li class="nav-item dropdown current-menu-item">
+                                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Upload
+                                        </a>
+                                        <div class="dropdown-menu bg-transparent"
+                                             aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item bg-white" href="/upload_courses">Upload your courses</a>
+                                            <a class="dropdown-item bg-white" href="/upload_blogs">upload your blogs</a>
+                                        </div>
+                                    </li>
+
+                                    <li class="nav-item dropdown current-menu-item">
+                                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Settings
+                                        </a>
+                                        <div class="dropdown-menu bg-transparent"
+                                             aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="{% url 'main:edit_info' user.username %}">Edit
+                                                your info</a>
+                                            <a class="dropdown- bg-white" href="account_edit">Edit your profile</a>
+                                            <a class="dropdown-item bg-white" href="change_password">Chang password</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </nav><!-- .site-navigation -->
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div><!-- .nav-bar -->
+        </div>
+        <div class="col-12 col-lg-8">
+            <h3>Your Contributions This Year</h3>
+            {% if github.github_username %}
+                <img src="http://ghchart.rshah.org/{{ github.github_username }}" alt="Name Your GitHub chart"
+                     width="700">
+            {% else %}
+                <div class="card">
+                    <h3 class="centered">Embed your github contributions!</h3>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form }}
+                            <p></p>
+                            <button type="submit">Go</button>
+                        </form>
+                    </div>
+                </div><!-- .about-values -->
+            {% endif %}
+            <p></p>
+            <br>
+            <div class="featured-courses courses-wrap">
+                <h3>Your Videos</h3>
+
+                <div class="row mx-m-25">
+
+                    {% for tutorial in tutorials %}
+                        <div class="col-12 col-md-6 px-25">
+                            <div class="course-content">
+                                <figure class="course-thumbnail">
+                                    <a href="{% url "main:single_slug" tutorial.tutorial_slug %}"><img
+                                            src="{{ tutorial.file.url }}" alt=""></a>
+                                </figure><!-- .course-thumbnail -->
+
+                                <div class="course-content-wrap">
+                                    <header class="entry-header">
+                                        <h2 class="entry-title"><a
+                                                href="{% url "main:single_slug" tutorial.tutorial_slug %}">{{ tutorial.tutorial_title }}</a>
+                                        </h2>
+
+                                        <div class="entry-meta flex flex-wrap align-items-center">
+                                            <div class="course-author"><a
+                                                    href="{% url 'main:profile_pk' tutorial.tutorial_uploader_id %}">{{ tutorial.tutorial_uploader }}</a>
+                                            </div>
+                                            <div class="course-date">{{ tutorial.tutorial_published }}</div>
+                                        </div><!-- .course-date -->
+                                    </header><!-- .entry-header -->
+
+                                    <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
+                                        <div>
+                                            {{tutorial.tutorial_categories}}/{{ tutorial.tutorial_series }}
+                                        </div><!-- .course-cost -->
+
+                                        <div class="course-ratings flex justify-content-end align-items-center">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star-o"></span>
+
+                                            <span class="course-ratings-count">(4 votes)</span>
+                                        </div><!-- .course-ratings -->
+                                    </footer><!-- .entry-footer -->
+                                </div><!-- .course-content-wrap -->
+                            </div><!-- .course-content -->
+                        </div><!-- .col -->
+                    {% endfor %}
+
+
+                </div><!-- .row -->
+            </div><!-- .featured-courses -->
+        </div><!-- .col -->
+        <div class="col-12 col-lg-4">
+
+            <ul class="list-group">
+                <h3>Your Friends</h3>
+                {% if friends %}
+                    {% for friend in friends %}
+                        {% if friend.pk != user.pk %}
+                            <li class="list-group-item">
+                                <a href="{% url 'main:profile_pk' friend.pk %}">
+                                    <img src="{{ friend.photo.file.url }}" class=" rounded-circle" width="30px"
+                                         height="30px" alt="M Nazrul Islam"> &nbsp
+                                    {{ friend.username }}
+                                </a>
+                                <a href="{% url 'main:change_friends' operation='remove' pk=friend.pk %}">
+                                    <i class="material-icons pull-right">
+                                        delete
+                                    </i>
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <h4>You have no friends now! Go get one!</h4>
+                {% endif %}
+
+            </ul>
+            <p></p>
+            <p></p>
+
+            <ul class="list-group">
+                <h3>Friends You May Want to Know</h3>
+                {% for u in users %}
+                    {% if u.pk != user.pk and u not in friends %}
+                        <li class="list-group-item">
+                            <a href="{% url 'main:profile_pk' u.pk %}">
+                                <img src="{{ u.photo.file.url }}" class=" rounded-circle" width="30px"
+                                     height="30px" alt="M Nazrul Islam"> &nbsp
+                                {{ u.username }}
+                            </a>
+                            <a href="{% url 'main:change_friends' operation='add' pk=u.pk %}">
+                                <i class="material-icons pull-right">add</i>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div><!-- .col -->
+    </div><!-- .row -->
+</div><!-- .container -->
+
+
+{% include 'main/includes/footer.html' %}
+
+</div>
+</body>
+{% include "main/includes/js.html" %}
+</html>

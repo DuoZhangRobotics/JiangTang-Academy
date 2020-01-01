@@ -1,0 +1,33 @@
+<head>
+    {% load static %}
+    <!-- Prism CSS -->
+    <link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Jike</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {% include 'main/includes/navbaritems.html' %}
+      </ul>
+    </div>
+  </nav>
+    {% block head %}
+
+  {% endblock %}
+{% block body %}
+  {% endblock %}
+  {% block content %}
+  {% endblock %}
+</body>
+{% include 'main/includes/messaging.html' %}
+<!-- Prism JS -->
+<script src="{% static "tinymce/js/prism.js" %}"></script>
+<script>M.AutoInit();</script>
