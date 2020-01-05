@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Tutorial, TutorialSeries, TutorialCategory, Friend, Photo
+from .models import Tutorial, TutorialSeries, TutorialCategory, Friend, Photo, UserMessage
 # Create your views here.
 from django.http import HttpResponse, Http404
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
@@ -13,7 +13,8 @@ from .forms import (NewUserForm,
                     UploadCourses,
                     AddNewCategory,
                     AddNewSeries,
-                    GithubLogin)
+                    GithubLogin,
+                    UserContact)
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -155,7 +156,8 @@ def account(request):
                 "avatar": avatar,
                 "github": current_user.github,
                 "form": form,
-                "tutorials": Tutorial.objects.filter(tutorial_uploader_id=request.user.pk).order_by("-tutorial_published"),
+                "tutorials": Tutorial.objects.filter(tutorial_uploader_id=request.user.pk).order_by(
+                    "-tutorial_published"),
                 }
         return render(request=request,
                       template_name='main/account.html',
@@ -250,12 +252,17 @@ def view_other_profile(request, pk=None):
         user = User.objects.get(pk=pk)
         profile = user.userprofile
         avatar = user.photo.file
+        github = user.github.github_username
     else:
         user = request.user
         profile = user.userprofile
         avatar = user.photo.file
+        github = user.github.github_username
+
     args = {"user": user,
-            "profile": profile, "avatar": avatar}
+            "profile": profile,
+            "avatar": avatar,
+            "github": github}
     return render(request, 'main/profile.html', args)
 
 
@@ -270,7 +277,15 @@ def change_friend(request, operation, pk):
 
 
 def contact(request):
-    return render(request, 'main/contact.html')
+    user = request.user
+    if request.method == "POST":
+        form = UserContact(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("main:homepage")
+    else:
+        form = UserContact()
+    return render(request, 'main/contact.html', {'form': form, "user": user})
 
 
 def courses(request):
@@ -363,3 +378,10 @@ def courses_series(request, pk):
         "tutorials": Tutorial.objects.filter(tutorial_series_id=pk),
     }
     return render(request, 'main/courses_series.html', args)
+
+
+def user_message(request):
+    args = {
+        "messages": UserMessage.objects.all(),
+    }
+    return render(request, "main/message.html", args)

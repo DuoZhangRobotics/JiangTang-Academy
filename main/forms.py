@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import UserProfile, TutorialCategory, TutorialSeries, Tutorial, Photo, Github
+from .models import UserProfile, TutorialCategory, TutorialSeries, Tutorial, Photo, Github, UserMessage
 from django.db import models
 from tinymce.widgets import TinyMCE
 from form_utils.forms import BetterForm, BetterModelForm
@@ -91,22 +91,7 @@ class UploadCourses(forms.ModelForm):
 
     class Meta:
         model = Tutorial
-        fields = ('tutorial_title', 'tutorial_series', "tutorial_categories", "tutorial_content", "file", "videofile", )
-
-
-class Upload(BetterModelForm):
-    class Meta:
-        model = Tutorial
-        fieldsets = [
-            ("Title/date", {'fields': ["tutorial_title", "tutorial_published"]}),
-            ("URL", {'fields': ["tutorial_slug"]}),
-            ("Series", {'fields': ["tutorial_series"]}),
-            ("Content", {"fields": ["tutorial_content"]})
-        ]
-
-        formfield_overrides = {
-            models.TextField: {'widget': TinyMCE()},
-        }
+        fields = ('tutorial_title', 'tutorial_series', "tutorial_categories", "tutorial_content", "file", "videofile",)
 
 
 class AddNewCategory(forms.ModelForm):
@@ -128,4 +113,16 @@ class GithubLogin(forms.ModelForm):
         widgets = {
             "github_password": forms.PasswordInput(attrs={'class': 'form-control'}),
             "github_username": forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class UserContact(forms.ModelForm):
+    message = forms.CharField(widget=TinyMCE(attrs={'placeholder': 'Your Message'}))
+    class Meta:
+        model = UserMessage
+        exclude = ()
+        widgets = {
+            "name": forms.TextInput(attrs={'placeholder': 'Your Name'}),
+            "email": forms.TextInput(attrs={'placeholder': 'Your Email'}),
+            "subject": forms.TextInput(attrs={'placeholder': 'Your Subject'},),
         }

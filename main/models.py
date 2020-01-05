@@ -128,3 +128,11 @@ def create_github(sender, **kwargs):
 
 
 post_save.connect(create_github, sender=User)
+
+
+class UserMessage(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    subject = models.CharField(max_length=2000)
+    message = models.TextField()
+

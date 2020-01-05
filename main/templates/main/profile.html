@@ -72,11 +72,17 @@
 
 
             <img src="{{ avatar.url }}" class="rounded-circle" width="260px" height="260px" alt="M Nazrul Islam">
+            {% if github %}
+                <img src="http://ghchart.rshah.org/{{ github }}" alt="Name Your GitHub chart"
+                     width="700">
+            {% else %}
+                 <p>{{ user.username }} haven't connect to his Github account!</p>
+            {% endif %}
         </div>
     </div>
 
 
-{% include 'main/includes/footer.html' %}
+    {% include 'main/includes/footer.html' %}
 
 </div>
 </body>

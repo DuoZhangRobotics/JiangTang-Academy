@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>JT Contact</title>
-
+    {% load static %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,120 +24,125 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="../../static/main/css/style.css">
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
     <style>
-       /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-       }
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 400px; /* The height is 400 pixels */
+            width: 100%; /* The width is the width of the web page */
+        }
     </style>
 </head>
 <body class="contact-page">
-    <div class="page-header">
-       {% include 'main/includes/navbaritems.html' %}
+<div class="page-header">
+    {% include 'main/includes/navbaritems.html' %}
 
 
-        <div class="page-header-overlay">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <header class="entry-header">
-                            <h1>CONTACT</h1>
-                        </header><!-- .entry-header -->
-                    </div><!-- .col -->
-                </div><!-- .row -->
-            </div><!-- .container -->
-        </div><!-- .page-header-overlay -->
-    </div><!-- .page-header -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumbs">
-                    <ul class="flex flex-wrap align-items-center p-0 m-0">
-                        <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
-                        <li>Contact</li>
-                    </ul>
-                </div><!-- .breadcrumbs -->
-            </div><!-- .col -->
-        </div><!-- .row -->
-
-        <div class="row justify-content-between">
-            <div class="col-12">
-                <div class="contact-gmap">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3213.227913815619!2d120.68873531527727!3d36.35525798004253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x359659f2eee4791f%3A0x776a63c1f1ddd4a9!2sShandong%20University%20Qingdao%20Campus!5e0!3m2!1sen!2s!4v1575615849098!5m2!1sen!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                </div><!-- .contact-gmap -->
-            </div><!-- .col -->
-
-            <div class="col-12 col-lg-6">
-                <div class="contact-form">
-                    <h3>Contact Form</h3>
-
-                    <form>
-                        <input type="text" placeholder="Your Name">
-                        <input type="email" placeholder="Your Email">
-                        <input type="text" placeholder="Subject">
-                        <textarea placeholder="Your Message" rows="4"></textarea>
-                        <input type="submit" value="Send Message">
-                    </form>
-                </div><!-- .contact-form -->
-            </div><!-- .col -->
-
-            <div class="col-12 col-lg-6">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-
-                    <p>You are free to contact us in
-                    8:00AM-3:00PM (GMT+8)
-                    Monday-Friday</p>
-                    <ul class="p-0 m-0">
-                        <li><span>Location:</span>9M4R+49 Aoshanweizhen, Jimo, Qingdao, Shandong, China</li>
-                        <li><span>Email:</span><a class="email" href="mailto:duo_zhang@qq.com">duo_zhang@qq.com</a></li>
-                        <li><span>Phone:</span><a href="#">+86 17806260517</a></li>
-                    </ul>
-                </div><!-- .contact-info -->
-            </div><!-- .col -->
-        </div><!-- .row -->
-    </div><!-- .container -->
-
-    <div class="clients-logo">
+    <div class="page-header-overlay">
         <div class="container">
             <div class="row">
-                <div class="col-12 flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
-                    <div class="logo-wrap">
-                        <img src="../../static/main/images/logo-1.png" alt="">
-                    </div><!-- .logo-wrap -->
-
-                    <div class="logo-wrap">
-                        <img src="../../static/main/images/logo-2.png" alt="">
-                    </div><!-- .logo-wrap -->
-
-                    <div class="logo-wrap">
-                        <img src="../../static/main/images/logo-3.png" alt="">
-                    </div><!-- .logo-wrap -->
-
-                    <div class="logo-wrap">
-                        <img src="../../static/main/images/logo-4.png" alt="">
-                    </div><!-- .logo-wrap -->
-
-                    <div class="logo-wrap">
-                        <img src="../../static/main/images/logo-5.png" alt="">
-                    </div><!-- .logo-wrap -->
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h1>CONTACT</h1>
+                    </header><!-- .entry-header -->
                 </div><!-- .col -->
             </div><!-- .row -->
         </div><!-- .container -->
-    </div><!-- .clients-logo -->
+    </div><!-- .page-header-overlay -->
+</div><!-- .page-header -->
 
-      {% include 'main/includes/footer.html' %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumbs">
+                <ul class="flex flex-wrap align-items-center p-0 m-0">
+                    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                    <li>Contact</li>
+                </ul>
+            </div><!-- .breadcrumbs -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+
+    <div class="row justify-content-between">
+        <div class="col-12">
+            <div class="contact-gmap">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3213.227913815619!2d120.68873531527727!3d36.35525798004253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x359659f2eee4791f%3A0x776a63c1f1ddd4a9!2sShandong%20University%20Qingdao%20Campus!5e0!3m2!1sen!2s!4v1575615849098!5m2!1sen!2s"
+                        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div><!-- .contact-gmap -->
+        </div><!-- .col -->
+
+        <div class="col-12 col-lg-6">
+            <div class="contact-form">
+                <h3>Contact Form</h3>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    {{ form.email }}
+                    {{ form.subject }}
+                    {{ form.message }}
+                    <p></p>
+                    <button type="submit">Submit</button>
+                </form>
+            </div><!-- .contact-form -->
+        </div><!-- .col -->
+
+        <div class="col-12 col-lg-6">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+
+                <p>You are free to contact us in
+                    8:00AM-3:00PM (GMT+8)
+                    Monday-Friday</p>
+                <ul class="p-0 m-0">
+                    <li><span>Location:</span>9M4R+49 Aoshanweizhen, Jimo, Qingdao, Shandong, China</li>
+                    <li><span>Email:</span><a class="email" href="mailto:duo_zhang@qq.com">duo_zhang@qq.com</a></li>
+                    <li><span>Phone:</span><a href="#">+86 17806260517</a></li>
+                </ul>
+            </div><!-- .contact-info -->
+        </div><!-- .col -->
+    </div><!-- .row -->
+</div><!-- .container -->
+
+<div class="clients-logo">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 flex flex-wrap justify-content-center justify-content-lg-between align-items-center">
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-1.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-2.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-3.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-4.png" alt="">
+                </div><!-- .logo-wrap -->
+
+                <div class="logo-wrap">
+                    <img src="../../static/main/images/logo-5.png" alt="">
+                </div><!-- .logo-wrap -->
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</div><!-- .clients-logo -->
+
+{% include 'main/includes/footer.html' %}
 
 
-    <script type='text/javascript' src='../../static/main/js/jquery.js'></script>
-    <script type='text/javascript' src='../../static/main/js/swiper.min.js'></script>
-    <script type='text/javascript' src='../../static/main/js/masonry.pkgd.min.js'></script>
-    <script type='text/javascript' src='../../static/main/js/jquery.collapsible.min.js'></script>
-    <script type='text/javascript' src='../../static/main/js/custom.js'></script>
-     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJef4_Y3HI2N438l7l6kSegU29H9bKsfc&callback=initMap"
-  type="text/javascript"></script>
-</body>
-{%  include "main/includes/js.html" %}
+<script type='text/javascript' src='../../static/main/js/jquery.js'></script>
+<script type='text/javascript' src='../../static/main/js/jquery.collapsible.min.js'></script>
+
+<script src="{% static "tinymce/js/prism.js" %}"></script>
+<script type='text/javascript' src='../../static/main/js/bootstrap.bundle.js'></script>
+<script type='text/javascript' src='../../static/main/js/bootstrap.js'></script>
+<script type='text/javascript' src='../../static/main/js/swiper.min.js'></script>
+<script type='text/javascript' src='../../static/main/js/masonry.pkgd.min.js'></script>
+<script type='text/javascript' src='../../static/main/js/custom.js'></script>
+
 </html>
