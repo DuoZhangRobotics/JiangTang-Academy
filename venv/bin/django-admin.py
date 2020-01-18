@@ -1,4 +1,4 @@
-#!/Users/jiangtang/Documents/AI/DatabaseInteraction/mysite/venv/bin/python
+#!/var/www/html/mysite/venv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
