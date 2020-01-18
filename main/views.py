@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Tutorial, TutorialSeries, TutorialCategory, Friend, Photo, UserMessage
+from .models import Tutorial, TutorialSeries, TutorialCategory, Friend, Photo, UserMessage, Comment
 # Create your views here.
 from django.http import HttpResponse, Http404
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import logout, login, authenticate, update_session_auth_hash
 from django.contrib import messages
+from django.views.generic import TemplateView
 from .forms import (NewUserForm,
                     EditProfileForm,
                     EditUserInfo,
@@ -14,7 +15,9 @@ from .forms import (NewUserForm,
                     AddNewCategory,
                     AddNewSeries,
                     GithubLogin,
-                    UserContact)
+                    UserContact,
+                    CommentForm,
+                    )
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -111,13 +114,41 @@ def single_slug(request, single_slug):
         tutorials_from_series = Tutorial.objects.filter(
             tutorial_series__series=this_tutorial.tutorial_series).order_by('tutorial_published')
         this_tutorial_idx = list(tutorials_from_series).index(this_tutorial)
+        comments = Comment.objects.order_by("comment_time")
+        form1 = CommentForm()
+        if request.method == "POST":
+            form = CommentForm(data=request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.commenter = request.user
+                comment.tutorial = this_tutorial
+                print(len([i.comment_id for i in Comment.objects.all()]))
+                if len([i.comment_id for i in Comment.objects.all()]) == 0:
+                    pk = 0
+                else:
+                    pk = max([i.comment_id for i in Comment.objects.all()]) + 1
 
-        return render(request=request,
-                      template_name='main/tutorial.html',
-                      context={"tutorial": this_tutorial,
-                               "sidebar": tutorials_from_series,
-                               "this_tut_idx": this_tutorial_idx,
-                               "user": request.user})
+                comment.comment_id = pk
+                comment.save()
+            return render(request=request,
+                          template_name='main/tutorial.html',
+                          context={"tutorial": this_tutorial,
+                                   "sidebar": tutorials_from_series,
+                                   "this_tut_idx": this_tutorial_idx,
+                                   "user": request.user,
+                                   "comments": comments,
+                                   "form": form1,
+
+                                   })
+        else:
+            return render(request=request,
+                          template_name='main/tutorial.html',
+                          context={"tutorial": this_tutorial,
+                                   "sidebar": tutorials_from_series,
+                                   "this_tut_idx": this_tutorial_idx,
+                                   "user": request.user,
+                                   "form": form1,
+                                   "comments": comments})
 
 
 def account(request):

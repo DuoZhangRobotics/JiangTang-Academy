@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tutorial, TutorialCategory, TutorialSeries, UserProfile, Friend, Github
+from .models import Tutorial, TutorialCategory, TutorialSeries, UserProfile, Friend, Github, Comment
 from tinymce.widgets import TinyMCE
 from django.db import models
 
@@ -36,3 +36,4 @@ admin.site.register(Tutorial, TutorialAdmin)
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Friend)
 admin.site.register(Github)
+admin.site.register(Comment)

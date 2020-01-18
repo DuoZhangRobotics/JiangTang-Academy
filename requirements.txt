@@ -1,0 +1,13 @@
+Django==2.2.7
+django-appconf==1.0.3
+django-crispy-forms==1.8.1
+django-form-utils==1.0.3
+django-imagekit==4.0.2
+django-popup-forms==1.0.3
+django-tinymce4-lite==1.7.5
+jsmin==2.2.2
+pilkit==2.0
+Pillow==6.2.1
+pytz==2019.3
+six==1.13.0
+sqlparse==0.3.0

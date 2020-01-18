@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>JA About</title>
-
+    {% load static %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,6 +24,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="../../static/main/css/style.css">
+    {{ form.media }}
+    <link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet">
 </head>
 <body class="about-page">
 <div class="page-header">
@@ -74,6 +76,24 @@
                     <button>Delete</button>
                 </a>
             {% endif %}
+
+            {% for comment in comments %}
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ comment.commenter }}</h5>
+                        <p>{{ comment.comment_time }}</p>
+                        {{ comment.comment }}
+                    </div>
+                </div>
+            {% endfor %}
+        <p></p>
+        <h5>Leave Your Commnet Here!</h5>
+            <form method="POST" enctype="multipart/form-data" id="formUpload">
+                {% csrf_token %}
+                {{ form.comment }}
+                <p></p>
+                <button type="submit">submit</button>
+            </form>
         </div>
         <div class="col-12 col-lg-3">
             <ul class="list-group">
@@ -98,8 +118,6 @@
                         </li>
                     {% endif %}
                 {% endfor %}
-
-
             </ul>
         </div>
 
@@ -110,6 +128,15 @@
 
 </div>
 </body>
-{% include "main/includes/js.html" %}
+<script type='text/javascript' src='../../static/main/js/jquery.js'></script>
+<script type='text/javascript' src='../../static/main/js/jquery.collapsible.min.js'></script>
+
+<script src="{% static "tinymce/js/prism.js" %}"></script>
+<script type='text/javascript' src='../../static/main/js/bootstrap.bundle.js'></script>
+<script type='text/javascript' src='../../static/main/js/bootstrap.js'></script>
+<script type='text/javascript' src='../../static/main/js/swiper.min.js'></script>
+<script type='text/javascript' src='../../static/main/js/masonry.pkgd.min.js'></script>
+<script type='text/javascript' src='../../static/main/js/custom.js'></script>
+
 
 </html>

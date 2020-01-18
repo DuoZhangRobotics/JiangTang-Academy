@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import UserProfile, TutorialCategory, TutorialSeries, Tutorial, Photo, Github, UserMessage
+from .models import UserProfile, TutorialCategory, TutorialSeries, Tutorial, Photo, Github, UserMessage, Comment
 from django.db import models
 from tinymce.widgets import TinyMCE
 from form_utils.forms import BetterForm, BetterModelForm
@@ -118,11 +118,21 @@ class GithubLogin(forms.ModelForm):
 
 class UserContact(forms.ModelForm):
     message = forms.CharField(widget=TinyMCE(attrs={'placeholder': 'Your Message'}))
+
     class Meta:
         model = UserMessage
         exclude = ()
         widgets = {
             "name": forms.TextInput(attrs={'placeholder': 'Your Name'}),
             "email": forms.TextInput(attrs={'placeholder': 'Your Email'}),
-            "subject": forms.TextInput(attrs={'placeholder': 'Your Subject'},),
+            "subject": forms.TextInput(attrs={'placeholder': 'Your Subject'}, ),
         }
+
+
+class CommentForm(forms.ModelForm):
+    comment = forms.CharField(widget=TinyMCE(attrs={'placeholder': 'Leave Your Comment Here!'}))
+
+    class Meta:
+        model = Comment
+        fields = ('comment',)
+

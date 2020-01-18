@@ -136,3 +136,10 @@ class UserMessage(models.Model):
     subject = models.CharField(max_length=2000)
     message = models.TextField()
 
+
+class Comment(models.Model):
+    comment = models.TextField()
+    comment_id = models.FloatField(max_length=100, default=0, primary_key=True)
+    comment_time = models.DateTimeField(auto_now=True)
+    tutorial = models.ForeignKey(Tutorial, default=1, verbose_name="Series", on_delete=models.SET_DEFAULT)
+    commenter = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Author", on_delete=models.CASCADE, null=True)
